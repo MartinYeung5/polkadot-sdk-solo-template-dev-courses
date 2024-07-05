@@ -28,12 +28,15 @@ pub mod pallet {
     #[pallet::event]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
     pub enum Event<T: Config> {
-
+        ClaimCreated(T::AccountId, BoundedVec<u8, T::MaxClaimLength>),
+        ClaimRevoked(T::AccountId, BoundedVec<u8, T::MaxClaimLength>),
     }
 
     #[pallet::error]
     pub enum Error<T> {
-        ProofAlreadyExist
+        ProofAlreadyExist,
+        ClaimNotExist,
+        NotClaimOwner,
     }
 
     #[pallet::call]
@@ -51,6 +54,19 @@ pub mod pallet {
             );
 
             Self::deposit_event(Event::ClaimCreated(sender, claim));
+
+            Ok(().into())
+        }
+
+        pub fn revoke_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>) -> DispatchResult {
+            let sender = ensure_signed(origin)?;
+            let (owner, _) = Proofs::<T>::get(&claim).ok_or(Error::<T>::ClaimNotExist)?;
+
+            ensure!(owner == sender, Error::<T>::NotClaimOwner);
+
+            Proofs::<T>::remove(&claim);
+
+            Self::deposit_event(Event::ClaimRevoked(sender, claim));
 
             Ok(().into())
         }
