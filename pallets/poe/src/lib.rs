@@ -13,6 +13,7 @@ pub mod pallet {
     #[pallet::pallet]
     pub struct Pallet<T>(_);
 
+    #[pallet::storage]
     pub type Prros<T: Config> = StorageMap<
         _,
         Blakr2_128Concat,
