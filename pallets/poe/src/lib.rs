@@ -31,7 +31,7 @@ pub mod pallet {
 
     #[pallet::error]
     pub enum Error<T> {
-
+        ProofAlreadyExist
     }
 
     #[pallet::call]
