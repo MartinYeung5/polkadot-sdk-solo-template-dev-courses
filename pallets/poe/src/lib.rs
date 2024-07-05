@@ -9,4 +9,6 @@ pub mod pallet {
     pub trait Config: frame_support::Config{
         type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_support::Config>::RuntimeEvent>;
     }
+
+    pub struct Pallet<T>(_);
 }
