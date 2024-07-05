@@ -9,7 +9,9 @@ pub mod pallet {
     pub trait Config: frame_support::Config{
         type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_support::Config>::RuntimeEvent>;
     }
-    
+
     #[pallet::pallet]
     pub struct Pallet<T>(_);
+
+    pub type Prros<T: Config> = StorageMap<>
 }
