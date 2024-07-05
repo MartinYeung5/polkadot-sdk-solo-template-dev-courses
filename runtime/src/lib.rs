@@ -298,6 +298,9 @@ mod runtime {
     // Include the custom logic from the pallet-template in the runtime.
     #[runtime::pallet_index(7)]
     pub type TemplateModule = pallet_template;
+
+    #[runtime::pallet_index(8)]
+    pub type PoeModule = pallet_poe;
 }
 
 /// The address format for describing accounts.
