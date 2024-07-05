@@ -43,7 +43,7 @@ pub mod pallet {
         pub fn create_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>) -> DispatchResult {
             let sender = ensure_signed(origin)?;
 
-            ensure!(!Proof::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
+            ensure!(!Proofs::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
 
             Proofs::<T>::insert(
                 &claim, //key
