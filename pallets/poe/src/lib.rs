@@ -6,6 +6,6 @@ pub mod pallet {
     use frame_support::pallet_prelude::*;
 
     pub trait Config: frame_support::Config{
-        
+        type Event: From<Event<Self>> + IsType<<Self as frame_support::Config>::Event>;
     }
 }
