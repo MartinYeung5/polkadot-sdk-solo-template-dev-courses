@@ -43,7 +43,7 @@ pub mod pallet {
 
             Proofs::<T>::insert(
                 &claim, //key
-                (sender.clone(),)
+                (sender.clone(), frame_system::Pallet::<T>::block_number()) //value
             )
         }
     }
