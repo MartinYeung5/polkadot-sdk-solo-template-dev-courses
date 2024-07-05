@@ -30,6 +30,7 @@ pub mod pallet {
     pub enum Event<T: Config> {
         ClaimCreated(T::AccountId, BoundedVec<u8, T::MaxClaimLength>),
         ClaimRevoked(T::AccountId, BoundedVec<u8, T::MaxClaimLength>),
+        ClaimTransfered(T::AccountId, BoundedVec<u8, T::MaxClaimLength>),
     }
 
     #[pallet::error]
@@ -69,6 +70,24 @@ pub mod pallet {
             Proofs::<T>::remove(&claim);
 
             Self::deposit_event(Event::ClaimRevoked(sender, claim));
+
+            Ok(().into())
+        }
+
+        #[pallet::call_index(2)]
+        #[pallet::weight({0})]
+        pub fn transfer_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>, dest: T::AccountId) -> DispatchResult {
+        	let sender = ensure_signed(origin)?;
+            
+        	ensure!(Proofs::<T>::contains_key(&claim), Error::<T>::CalimNotExist);
+
+            let (owner, _) = Proofs::<T>::get(&claim).ok_or(Error::<T>::ClaimNotExist)?;
+
+            ensure!(owner == sender, Error::<T>::NotClaimOwner);
+
+            Proofs::<T>::insert(&claim, (dest, frame_system::Module::<T>::block_number()));
+
+            Self::deposit_event(Event::ClaimTransfered(sender, claim));
 
             Ok(().into())
         }
