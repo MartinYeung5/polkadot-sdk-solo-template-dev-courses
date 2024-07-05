@@ -35,4 +35,7 @@ pub mod pallet {
     }
 
     #[pallet::call]
+    impl<T: Config> Pallet<T> {
+        pub fn create_claim()
+    }
 }
