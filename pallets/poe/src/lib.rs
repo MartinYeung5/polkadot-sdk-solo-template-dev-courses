@@ -16,5 +16,6 @@ pub mod pallet {
     pub type Prros<T: Config> = StorageMap<
         _,
         Blakr2_128Concat,
+        BoundedVec<u8, T::MaxClaimLength>,
     >
 }
