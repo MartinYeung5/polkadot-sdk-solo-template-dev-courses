@@ -1,9 +1,11 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
-#[frame_support::pallet_prelude]
+pub use pallet::*;
+
+#[frame_support::pallet]
 pub mod pallet {
     use frame_support::pallet_prelude::*;
-    use frame_support::pallet_prelude::*;
+    use frame_system::pallet_prelude::*;
 
     #[pallet::config]
     pub trait Config: frame_support::Config{
@@ -36,6 +38,8 @@ pub mod pallet {
 
     #[pallet::call]
     impl<T: Config> Pallet<T> {
+        #[pallet::call_index(0)]
+        #[pallet::weight({0})]
         pub fn create_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>) -> DispatchResult {
             let sender = ensure_signed(origin)?;
 
