@@ -73,7 +73,8 @@ frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", t
 frame-system-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, optional = true }
 
 # The pallet in this template.
-pallet-template = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+# pallet-template = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-template = { default-features = false, path = "../pallet/template"}
 pallet-poe = { default-features = false, path = "../pallet/poe"}
 
 [build-dependencies]
