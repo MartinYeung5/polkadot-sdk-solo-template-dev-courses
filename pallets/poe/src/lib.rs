@@ -37,7 +37,7 @@ pub mod pallet {
     #[pallet::call]
     impl<T: Config> Pallet<T> {
         pub fn create_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>) -> DispatchResult {
-            
+            let sender = ensure_signed(origin)?;
         }
     }
 }
