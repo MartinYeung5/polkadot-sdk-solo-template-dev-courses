@@ -8,7 +8,7 @@ pub mod pallet {
     use frame_system::pallet_prelude::*;
 
     #[pallet::config]
-    pub trait Config: frame_support::Config{
+    pub trait Config: frame_system::Config{
         type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_support::Config>::RuntimeEvent>;
         #[pallet::constant]
         type MaxClaimLength: Get<u32>;
