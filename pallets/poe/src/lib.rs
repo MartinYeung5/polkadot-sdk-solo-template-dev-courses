@@ -17,5 +17,6 @@ pub mod pallet {
         _,
         Blakr2_128Concat,
         BoundedVec<u8, T::MaxClaimLength>,
+        (T::AccountId, BlockNumberFor<T>),
     >
 }
