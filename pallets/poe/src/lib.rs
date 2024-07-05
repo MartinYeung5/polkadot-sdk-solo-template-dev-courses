@@ -33,4 +33,6 @@ pub mod pallet {
     pub enum Error<T> {
 
     }
+
+    #[pallet::call]
 }
