@@ -46,7 +46,7 @@ pub mod pallet {
                 (sender.clone(), frame_system::Pallet::<T>::block_number()), //value
             );
 
-            
+            Self::deposit_event(Event::ClaimCreated(sender, claim));
         }
     }
 }
