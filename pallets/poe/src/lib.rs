@@ -47,6 +47,8 @@ pub mod pallet {
             );
 
             Self::deposit_event(Event::ClaimCreated(sender, claim));
+
+            Ok(().into());
         }
     }
 }
