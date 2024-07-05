@@ -40,6 +40,11 @@ pub mod pallet {
             let sender = ensure_signed(origin)?;
 
             ensure!(!Proof::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
+
+            Proofs::<T>::insert(
+                &claim, //key
+                (sender.clone(),)
+            )
         }
     }
 }
