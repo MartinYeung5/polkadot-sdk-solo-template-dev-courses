@@ -18,9 +18,9 @@ pub mod pallet {
     pub struct Pallet<T>(_);
 
     #[pallet::storage]
-    pub type Prros<T: Config> = StorageMap<
+    pub type Proofs<T: Config> = StorageMap<
         _,
-        Blakr2_128Concat,
+        Blake2_128Concat,
         BoundedVec<u8, T::MaxClaimLength>,
         (T::AccountId, BlockNumberFor<T>),
     >;
