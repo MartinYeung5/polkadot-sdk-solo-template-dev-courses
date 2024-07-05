@@ -58,6 +58,8 @@ pub mod pallet {
             Ok(().into())
         }
 
+        #[pallet::call_index(1)]
+        #[pallet::weight({0})]
         pub fn revoke_claim(origin: OriginFor<T>, claim: BoundedVec<u8, T::MaxClaimLength>) -> DispatchResult {
             let sender = ensure_signed(origin)?;
             let (owner, _) = Proofs::<T>::get(&claim).ok_or(Error::<T>::ClaimNotExist)?;
