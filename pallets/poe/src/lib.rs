@@ -22,4 +22,7 @@ pub mod pallet {
         BoundedVec<u8, T::MaxClaimLength>,
         (T::AccountId, BlockNumberFor<T>),
     >;
+
+    #[pallet::event]
+    #[pallet::generate_deposit(pub(super) fn deposit_event)]
 }
